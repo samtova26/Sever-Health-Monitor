@@ -1,5 +1,6 @@
 import urllib.request
 import time
+import csv
 
 
 def check_website(url):
@@ -25,20 +26,20 @@ def check_website(url):
         print("Response time:", round(response_time, 2), "ms")
 
         if health:
-            print("Website is healthy.")
+            print("Website is healthy\n")
 
         else:
-            print("Website is unhealthy")
+            print("Website is unhealthy\n")
 
 
     # If we got a 403 response i.e Forbidden
     except urllib.error.HTTPError as error:
         print("HTTP status code:", error.code)
-        print("Website is unhealthy")
+        print("Website is unhealthy\n")
 
     # If we got an error
     except Exception as error:
-        print("Request failed:", error)
+        print("Request failed:", error,"\n")
 
 
 
@@ -49,6 +50,17 @@ def check_status(status_code):
 
     else:   
         return False
+    
 
-check_website("https://www.google.com")
-check_website("https://www.wikipedia.org")
+websites = [
+
+    "https://www.google.com",
+    "https://www.wikipedia.org",
+    "https://www.github.com"
+]
+
+
+for url in websites:
+
+    check_website(url)
+
